@@ -1,7 +1,189 @@
 ---
-title: "Presentation"
+title: "AI in Agriculture"
+subtitle: "The good, the band and the ugly"
+author: "Gustavo Alckmin"
+date: "2025-03-20"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    #css: custom.css
+    render-on-save: false
+    incremental: true
+
 ---
 
-## Quarto
+## Current st
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Questions that need to be answered
+
+
+## What is GenAI?
+
+
+
+## Simultaneous Word Display
+
+<div style="position: absolute; top: 30%; width: 100%; text-align: left;">
+<span class="fragment" data-fragment-index="1">Western</span>
+<span class="fragment" data-fragment-index="2">Australia</span>
+<span class="fragment" data-fragment-index="3">is </span>
+<span class="fragment" data-fragment-index="4">paradise</span>
+<span class="fragment" data-fragment-index="5">!.</span>
+</div>
+
+<div style="position: absolute; top: 60%; width: 100%; text-align: left;">
+<span class="fragment" data-fragment-index="1">1</span>
+<span class="fragment" data-fragment-index="2">2</span>
+<span class="fragment" data-fragment-index="3">3</span>
+<span class="fragment" data-fragment-index="4">4</span>
+<span class="fragment" data-fragment-index="5">5</span>
+</div>
+
+## How Tokens Work in LLMs
+
+:::::columns
+::::column
+<div>
+<span class="fragment" data-fragment-index="1">Western </span>
+<span class="fragment" data-fragment-index="2">Australia </span>
+<span class="fragment" data-fragment-index="3">is </span>
+<span class="fragment" data-fragment-index="4">paradise </span>
+<span class="fragment" data-fragment-index="5">!</span>
+</div>
+::::
+
+::::column
+<div>
+<span class="fragment" data-fragment-index="1">1 </span>
+<span class="fragment" data-fragment-index="2">2 </span>
+<span class="fragment" data-fragment-index="3">3 </span>
+<span class="fragment" data-fragment-index="4">4 </span>
+<span class="fragment" data-fragment-index="5">5</span>
+</div>
+::::
+:::::
+
+
+:::::columns
+::::column
+<div>
+<span class="fragment" data-fragment-index="1">Australia </span>
+<span class="fragment" data-fragment-index="2">is </span>
+<span class="fragment" data-fragment-index="3">the </span>
+<span class="fragment" data-fragment-index="4">best </span>
+<span class="fragment" data-fragment-index="5">!</span>
+</div>
+::::
+
+::::column
+<div>
+<span class="fragment" data-fragment-index="1">1 </span>
+<span class="fragment" data-fragment-index="2">2 </span>
+<span class="fragment" data-fragment-index="3">3 </span>
+<span class="fragment" data-fragment-index="4">4 </span>
+<span class="fragment" data-fragment-index="5">5</span>
+</div>
+::::
+:::::
+
+
+## The hype
+
+Quarto is a new text-based document format that is designed to be both human-readable and easy to work with. It is built on top of the R Markdown format and is designed to be a more flexible and powerful alternative. [This is]{.uwablue .bold} blue and bold text.
+
+## The reality
+Checking one more time if the changes are being saved in the .gitignore file
+
+
+1. first
+2. second
+3. third
+
+
+## Images
+
+
+
+
+```{r}
+#' Convert an image to a small grayscale matrix for display
+#' 
+#' @param image_path Path to the input image
+#' @param width Number of columns in the output matrix
+#' @param height Number of rows in the output matrix
+#' @return A matrix of grayscale values
+#' @examples
+#' # Convert an image to an 8x8 matrix
+#' img_matrix <- image_to_matrix("path/to/image.jpg", 8, 8)
+#' 
+image_to_matrix <- function(image_path, width = 8, height = 8) {
+  # Check if required packages are installed
+  if (!requireNamespace("magick", quietly = TRUE)) {
+    install.packages("magick")
+  }
+  if (!requireNamespace("knitr", quietly = TRUE)) {
+    install.packages("knitr")
+  }
+  
+  # Load the image and convert to grayscale
+  library(magick)
+  img <- image_read(image_path)
+  img_gray <- image_convert(img, colorspace = "gray")
+  
+  # Resize to desired dimensions
+  img_resized <- image_resize(img_gray, paste0(width, "x", height, "!"))
+  
+  # Convert to a matrix
+  img_array <- as.integer(image_data(img_resized, channels = "gray") * 255)
+  dim(img_array) <- c(height, width)
+  
+  return(img_array)
+}
+
+#' Display an image alongside its matrix representation
+#'
+#' @param image_path Path to the input image
+#' @param width Number of columns in the output matrix
+#' @param height Number of rows in the output matrix
+#' @return HTML for displaying in a Quarto slide
+#'
+display_image_with_matrix <- function(image_path, width = 8, height = 8) {
+  library(knitr)
+  library(magick)
+  
+  # Get the matrix representation
+  matrix_data <- image_to_matrix(image_path, width, height)
+  
+  # Create a small version of the original image for display
+  img <- image_read(image_path)
+  img_small <- image_resize(img, "300x300>")
+  
+  # Return the HTML
+  cat('<div style="display: flex; align-items: center; justify-content: space-around;">')
+  cat('<div style="flex: 1;">')
+  print(img_small)
+  cat('</div>')
+  cat('<div style="flex: 1;">')
+  print(kable(matrix_data, format = "html", table.attr = "style='font-size: 14px; text-align: center;'"))
+  cat('</div>')
+  cat('</div>')
+}
+``` 
+
+
+## The dawn of the digital agronomist
+
+## How Generative AI Works
+
+## The state of data in agriculture
+
+## Fitting the pieces together
+
+## Unintended consequences
+
+## Contacts
+
+Email: Gustavo.Alckmin@uwa.edu.au
+Acknowledgments: Rodrigo Pires (DPIRD)
+All the images in this presentation were generated using GenAi.

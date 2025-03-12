@@ -1,0 +1,41 @@
+/* Custom styles for the presentation */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+h1 {
+  color: #002147; /* UWA Navy Blue */
+}
+
+h2 {
+  color: #00539f; /* UWA Blue */
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #4d4d4d; /* UWA Grey */
+}
+
+/* UWA Branding Colors */
+.uwablue {
+  color: #00539f;
+}
+
+.uwanavy {
+  color: #002147;
+}
+
+.uwagold {
+  color: #ffb81c;
+}
+
+.uwagrey {
+  color: #4d4d4d;
+}
+
+/* Add more custom styles as needed */

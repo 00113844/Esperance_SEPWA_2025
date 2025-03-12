@@ -1,0 +1,70 @@
+/*-- scss:defaults --*/
+// UWA Branding Colors as SCSS Variables
+$uwanavy: #002147;
+$uwablue: #00539f;
+$uwagold: #ffb81c;
+$uwagrey: #4d4d4d;
+
+// RevealJS Theme Defaults
+$background-color: #f0f0f0;
+$heading-color: #333333;
+
+/*-- scss:rules --*/
+// RevealJS Theme Overrides
+.reveal {
+  background-color: $background-color;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  color: $heading-color;
+}
+
+// Base Presentation Styles
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+h1 {
+  color: $uwanavy;
+}
+
+h2 {
+  color: $uwablue;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: $uwagrey;
+}
+
+// UWA Branding Classes
+.uwablue { color: $uwablue; }
+.uwanavy { color: $uwanavy; }
+.uwagold { color: $uwagold; }
+.uwagrey { color: $uwagrey; }
+
+// Optional Slide Layout (only keep if used)
+.slide-left-list-right-image {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .left {
+    width: 60%;
+  }
+
+  .right {
+    width: 40%;
+    text-align: center;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
